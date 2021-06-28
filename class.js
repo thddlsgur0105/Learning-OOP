@@ -1,23 +1,36 @@
-class Person {
-    constructor(name, first, second) {
-        this.name = name;
-        this.first = first;
-        this.second = second;
+// 술 주량 판단 
+
+class User {
+    constructor({count, action, isHealthy}) {
+        this.count = count;
+        this.action = action;
+        this.isHealthy = isHealthy;
+    }
+    sayInfo = () => {
+       if (this.count < 3) {
+           console.log(`You are freshman in alcohol : ${this.count}`);
+       } else if (this.count < 7) {
+           console.log(`You are a little good at alcohol : ${this.count}`);
+       } else {
+           console.log(`You are senior in alcohol : ${this.count}`);
+       }
+    }
+    sayHealthy() {
+        if (this.isHealthy) {
+            console.log(`Your current status is healthy`)
+        } else {
+            console.log(`You are not healthy!`)
+        }
     }
 }
 
-var kim = new Person("kim", 10, 20);
+// 인스턴스 생성
 
-console.log("kim", kim)
+const kim = new User({
+    count: 10,
+    action: "sleep",
+    isHealthy: false, 
+})
 
-
-// var kim = new Person("kim", 10, 20, 30);
-// // kim의 sum function 만을 선택적으로 재정의하는 것 가능
-// kim.sum = function() {
-//     return "this : "+(this.first+this.second);
-// }
-
-// var lee = new Person("lee", 10, 10, 10);
-
-// console.log("kim.sum()", kim.sum());
-// console.log("lee.sum()", lee.sum());
+kim.sayInfo();
+kim.sayHealthy();
