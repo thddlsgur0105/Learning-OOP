@@ -1,15 +1,18 @@
-const p1 = new Promise((resolve) => {
-    setTimeout(resolve, 5000, "First");
-})
+function work(callback) {
+    setTimeout(() => {
+        const start = Date.now();
+        for (let i = 0; i < 1000000000; i++) {
+            // loop
+        }
+        const end = Date.now();
+        console.log(`${end-start} ms`);
+        callback(end-start);
+    }, 0)
+}
 
-const p2 = new Promise((resolve, reject) => {
-    setTimeout(reject, 1000, "This is rejected!");
-})
-
-const p3 = new Promise((resolve) => {
-    setTimeout(resolve, 3000, "Third");
-})
-
-const motherPromise = Promise.all([p1, p2, p3]);
-
-motherPromise.then(values => console.log(values)).catch(error => console.log(error));
+console.log(`작업 시작!`);
+work(ms => {
+    console.log(`작업이 끝났어요!`);
+    console.log(`${ms} ms 이 걸렸어요!`);
+});
+console.log(`작업 종료!`);
