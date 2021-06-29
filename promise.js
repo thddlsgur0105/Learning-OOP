@@ -1,9 +1,17 @@
 const amISexy = new Promise((resolve, reject) => {
-    // console Yes You Are ~== API returned value
-    setTimeout(resolve, 2000, "Yes You Are")
-    setTimeout(reject, 3000, "You Are Ugly")
+    resolve(2);
 });
 
+const timesTwo = number => number * 2;
+
 amISexy
-    .then(result => console.log(result))
-    .catch(error => console.log(error))
+.then(timesTwo)
+.then(timesTwo)
+.then(timesTwo)
+.then(timesTwo)
+.then(timesTwo)
+.then(() => {
+    throw Error("Something is wrong")
+})
+.then(lastNumber => console.log(lastNumber))
+.catch(error => console.log(error));
